@@ -1,13 +1,13 @@
 let userOper = "";
 let validOper = false;
-let userFirstNum = NaN;
-let userSecNum = NaN;
+let userFirstNum;
+let userSecNum;
 let decision = 0;
 const historyDec = [];
-const historyOper = [];
-let replace = true;
+let isCalculationContinue = true;
+let messageFinish = ''
 
-while (userOper !== "history" && replace === true) {
+while (userOper !== "history" && isCalculationContinue === true) {
   //запит оператора
   while (validOper === false) {
     userOper = prompt(
@@ -64,28 +64,47 @@ while (userOper !== "history" && replace === true) {
       }
       break;
     case "cos": //тут запускаємо обчислення унарних операцій
-      userFirstNum = +prompt("введіть Ваше значення числа");
-      decision = Math.cos(userFirstNum);
+    {
+      while (isNaN(userFirstNum)) {
+        userFirstNum = +prompt("введіть Ваше значення числа");
+        if (isNaN(userFirstNum)) {
+          alert("невірно введено операнд. Введіть ще раз.");
+        }
+      }
+      decision = Math.cos(userFirstNum).toFixed(2);
       break;
+    }
+
     case "sin":
-      userFirstNum = +prompt("введіть Ваше значення числа");
-      decision = Math.sin(userFirstNum);
-      break;
+      {
+        while (isNaN(userFirstNum)) {
+          userFirstNum = +prompt("введіть Ваше значення числа");
+          if (isNaN(userFirstNum)) {
+            alert("невірно введено операнд. Введіть ще раз.");
+          }
+        }
+        decision = Math.sin(userFirstNum).toFixed(2);
+        break;
+      }
     case "history": {
-      alert(`Історія Ваших обчислень: ${historyDec}`);
+      console.log(`Історія Ваших обчислень:`);
+      for (let i =0; i <= historyDec.length - 1; i++){
+        console.log(historyDec[i]);
+      }
     }
   }
-  if (decision === Infinity) {
+  if (userOper === "/" && userSecNum === 0) {
     alert(
       "мабудь намагаєтесь поділити на нуль? ))) Введіть друге число: не нуль!"
     );
   } else if (userOper !== "history") {
-    alert(`Operation " ${userOper} " finished with result  : ${decision}`);
+    messageFinish = `Operation " ${userOper} " finished with result  : ${decision}`;
+    alert(messageFinish);
   }
   if (decision !== Infinity) {
-    historyDec[historyDec.length] = decision;
+    historyDec[historyDec.length] = messageFinish;
   }
-  replace = confirm("Чи не хотіли б Ви створити нові обчислення?");
+  isCalculationContinue = confirm("Чи не хотіли б Ви створити нові обчислення?");
   validOper = false;
   userOper = "";
   userFirstNum = NaN;
