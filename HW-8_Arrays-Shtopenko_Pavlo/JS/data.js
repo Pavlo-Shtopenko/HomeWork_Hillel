@@ -201,7 +201,7 @@ const test = [
   },
 ];
 
-console.log(test);
+// console.log(test);
 
 // создаем ключ-значение среднего бала студента
 
@@ -219,13 +219,14 @@ let averageMark = function (array) {
 // список студентов на отчисление
 
 const studentsForExpulsion = function (array) {
-  console.log("\n List students for expulsion: ");
+  let listForEpulsion = [];
   array.filter(function (element) {
     if (element["average Mark"] < 50) {
-      console.log(element.name);
+      listForEpulsion.push(element.name);
     }
   });
-};
+  return listForEpulsion;
+}
 
 // медианная оценка студента
 
@@ -251,7 +252,7 @@ function addNewStudent(name, specialty, marks) {
     specialty,
     marks,
   });
-  return test;
+
 }
 
 // функция выводит список студентов по успеваемости
@@ -273,47 +274,49 @@ let sortingStudentsOfAverageMarks = function (array) {
   );
 };
 
-//вывод ТОП-5 спешных студентов
+//вывод ТОП-5 успешных студентов
 let topFiveStudents = function (array) {
   let sortAverageMarks = array.slice();
   sortAverageMarks.sort(sortingAverageMark);
   let topStudents = sortAverageMarks.splice(0, 5);
-  console.log("\n Rating of TOP-5 students: ");
-  topStudents.forEach((element) => console.log(element.name));
+  return topStudents;
 };
 
 /////// проверка всего кода //////
 
-addNewStudent(
-  "John Deere",
-  "tractor driver",
-  [
-    46, 78, 98, 75, 60, 83, 63, 59, 58, 79, 55, 60, 29, 54, 70, 75, 63, 90, 81,
-    74, 72, 88, 85, 33, 76,
-  ]
-);
-console.log(test);
-averageMark(test);
-console.log(test);
-addNewStudent(
-  "Figaro Lemur",
-  "Chief Technical Officer",
-  [
-    38, 44, 42, 54, 67, 34, 65, 61, 64, 45, 48, 76, 37, 23, 71, 33, 36, 57, 31,
-    66, 20, 66, 44, 32, 55,
-  ]
-);
-addNewStudent(
-  "Djack London",
-  "fireman",
-  [
-    52, 42, 54, 67, 34, 65, 45, 64, 45, 43, 76, 37, 23, 71, 33, 54, 57, 31, 66,
-    20, 66, 44, 32, 55,
-  ]
-);
-console.log(test);
-averageMark(test);
-console.log(test);
-studentsForExpulsion(test);
-topFiveStudents(test);
-sortingStudentsOfAverageMarks(test);
+// addNewStudent(
+//   "John Deere",
+//   "tractor driver",
+//   [
+//     46, 78, 98, 75, 60, 83, 63, 59, 58, 79, 55, 60, 29, 54, 70, 75, 63, 90, 81,
+//     74, 72, 88, 85, 33, 76,
+//   ]
+// );
+// console.log(test);
+// averageMark(test);
+// // console.log(test);
+// addNewStudent(
+//   "Figaro Lemur",
+//   "Chief Technical Officer",
+//   [
+//     38, 44, 42, 54, 67, 34, 65, 61, 64, 45, 48, 76, 37, 23, 71, 33, 36, 57, 31,
+//     66, 20, 66, 44, 32, 55,
+//   ]
+// );
+// addNewStudent(
+//   "Djack London",
+//   "fireman",
+//   [
+//     52, 42, 54, 67, 34, 65, 45, 64, 45, 43, 76, 37, 23, 71, 33, 54, 57, 31, 66,
+//     20, 66, 44, 32, 55,
+//   ]
+// );
+
+
+// console.log(test);
+// averageMark(test);
+// console.log(test);
+// console.log(studentsForExpulsion(test));
+// topFiveStudents(test);
+// sortingStudentsOfAverageMarks(test);
+// console.log(topFiveStudents(test));
