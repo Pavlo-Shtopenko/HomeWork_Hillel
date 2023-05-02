@@ -49,4 +49,4 @@ let toStringAllUpperCase = function (object) {
   return ourString;
 };
 
-// console.log(toStringAllUpperCase(obj));
+console.log(toStringAllUpperCase(obj));

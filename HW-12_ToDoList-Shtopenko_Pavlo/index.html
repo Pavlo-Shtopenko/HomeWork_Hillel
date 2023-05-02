@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list
+    </title>
+    <link rel="icon" href="img/check-mark.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="heading">
+                <img src="img/man.png" width="70px" height="70px" class="userPhoto"></img>
+                <p class="hallo"><span id="greeting">Hallo</span>, Friend! Lets plan big things!</p>
+            </div>
+            <form action="" class="creator">
+                <div class="inputs">
+                    <div class="input-item">
+                        <label for="action" >Your task:</label>
+                        <input type="text" name="auto" id="action" placeholder="your task" class="input-field">
+                    </div>
+                    <div class="input-item">
+                        <label for="description">Task`s description:</label>
+                        <input type="text" name="" id="description" placeholder="description"
+                            class="input-field description">
+                    </div>                    
+                </div>
+                <div class="settings">
+                    <div class="input-item block-range">
+                        <label for="select-range" >Choose range:</label>
+                        <select name="" id="select-range" class="select-range" >
+                            <option>important</option>
+                            <option  selected>normal</option>
+                            <option>so-so</option>
+                        </select>
+                    </div>
+                    <input type="button" name="" value="confirm" class="button-submit input-item">
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script type="text/template" id="settings">
+    <div class="settingBlock">
+        <div class="checkBlock">
+<input type="checkbox" name="" >
+<label for="">Done </label>
+        </div>
+        <img src="img/delete.png" height="30px" width="30px" class="image">
+    </div>
+</script>
+</body>
+<script src="JS/index.js"></script>
+
+</html>

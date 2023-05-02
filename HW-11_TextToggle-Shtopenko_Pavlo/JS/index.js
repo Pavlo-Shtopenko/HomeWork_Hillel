@@ -35,3 +35,5 @@ function hiding() {
   textButton1.classList.toggle("hidden-text");
   textButton2.classList.toggle("hidden-text");
 }
+
+console.dir(targetText);
