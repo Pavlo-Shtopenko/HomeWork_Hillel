@@ -1,0 +1,142 @@
+body {
+  font: 16px/23px "Rubik", sans-serif;
+  font-weight: 700;
+  color: #253b45;
+  background-color: #3c3d30;
+  margin: 0;
+}
+.wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 5% 0 5%;
+}
+.container {
+  display: block;
+  width: 628px;
+  min-height: 628px;
+  padding: 50px 50px;
+  margin: 0 auto;
+  background-color: #d6d0b8;
+  border-radius: 30px;
+}
+.heading {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.userPhoto {
+  border-radius: 50%;
+  margin-right: 50px;
+}
+.hallo {
+  font-weight: 200;
+  font-size: 20px;
+}
+.enter-form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 30px;
+  border: #3c3d30 1px solid;
+  border-radius: 30px;
+  box-sizing: border-box;
+  align-items: center;
+}
+.input-field {
+  height: 30px;
+  border-radius: 5px;
+  border: #3c3d30 1px solid;
+  background-color: #efebda;
+}
+
+.inputs {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+}
+.input-item {
+  margin: 10px;
+  position: relative;
+}
+
+.button-submit {
+width: 100px;
+height: 30px;
+background-color: #3c3d30;
+color: bisque;
+font-weight: 700;
+border-radius: 5px;
+}
+
+.disabled {
+  color:#ccc;
+  background-color: #888a6e;
+}
+
+.alert-bad-login {
+  display: block;
+  position: absolute;
+  top: -7px;
+  left: 265px;
+  width: 165px;
+  font-size: small;
+  border: 1px solid red;
+  background-color: #f49696;
+}
+
+.alert-bad-password {
+  display: block;
+  position: absolute;
+  top: -6px;
+  left: 256px;
+  width: 165px;
+  font-size: small;
+  border: 1px solid red;
+  background-color: #f49696;
+}
+
+.alert-bad-data-user {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 116px;
+  width: 200px;
+  font-size: small;
+  border: 1px solid red;
+  background-color: #f49696;
+}
+
+.hidden {
+  display: none;
+}
+
+.sucsefull-enter {
+  width: 80%;
+  min-height: 30vh;
+  font-size: 30px;
+  color: #3c3d30;
+  background-color: rgb(153, 216, 195);
+  display: flex;
+  line-height: 45px;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border: 2px solid #3c3d30;
+  border-radius: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
