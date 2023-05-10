@@ -55,7 +55,8 @@ loginUserInput.addEventListener("focus", () => {
 
 passwordUserInput.addEventListener("blur", () => {
   if (passwordUserInput.value.length <= 6) {
-    hiddenClass(alertPassword);
+    hiddenClass(alertPassword)
+    passwordUserInput.value = '';
   }
 });
 passwordUserInput.addEventListener("focus", () => {
