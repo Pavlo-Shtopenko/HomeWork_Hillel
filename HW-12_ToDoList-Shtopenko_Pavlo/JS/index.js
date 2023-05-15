@@ -66,6 +66,7 @@ function saveCard() {
 
 function onCheckboxChange(event) {
   if (event.target.checked) {
+    console.log(event.composedPath()[2]);
     event.composedPath()[3].classList.add("line-through");
   } else {
     event.composedPath()[3].classList.remove("line-through");
