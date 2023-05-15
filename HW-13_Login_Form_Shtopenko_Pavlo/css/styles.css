@@ -112,13 +112,12 @@ border-radius: 5px;
   display: none;
 }
 
-.sucsefull-enter {
+.succefull-enter {
   width: 80%;
   min-height: 30vh;
   font-size: 30px;
   color: #3c3d30;
   background-color: rgb(153, 216, 195);
-  display: flex;
   line-height: 45px;
   align-items: center;
   justify-content: center;

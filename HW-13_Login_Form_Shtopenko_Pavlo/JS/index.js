@@ -22,15 +22,14 @@ const form = document.getElementById("form");
 const alertLogin = document.getElementById("alertLogin");
 const alertPassword = document.getElementById("alertPassword");
 const alertDataUser = document.getElementById("alertDataUser");
- 
+const success = document.getElementById("success");
+
 function hiddenClass(input) {
   input.classList.remove("hidden");
 }
-function addClassHidden(cons){
+function addClassHidden(cons) {
   cons.classList.add("hidden");
 }
-
-
 
 loginUserInput.addEventListener("blur", () => {
   if (!loginUserInput.value.includes("@")) {
@@ -46,6 +45,11 @@ loginUserInput.addEventListener("blur", () => {
     3
   ) {
     hiddenClass(alertLogin);
+  } else if (
+    loginUserInput.value.slice(loginUserInput.value.indexOf("@")).indexOf(".") >
+    loginUserInput.value.slice(loginUserInput.value.indexOf("@")).length - 3
+  ) {
+    hiddenClass(alertLogin);
   }
 });
 loginUserInput.addEventListener("focus", () => {
@@ -55,8 +59,8 @@ loginUserInput.addEventListener("focus", () => {
 
 passwordUserInput.addEventListener("blur", () => {
   if (passwordUserInput.value.length <= 6) {
-    hiddenClass(alertPassword)
-    passwordUserInput.value = '';
+    hiddenClass(alertPassword);
+    passwordUserInput.value = "";
   }
 });
 passwordUserInput.addEventListener("focus", () => {
@@ -100,8 +104,8 @@ confirmButton.addEventListener("click", () => {
     loginUserInput.value === savedUserLogin &&
     passwordUserInput.value === savedUserPassword
   ) {
-    form.innerHTML =
-      '<div class="sucsefull-enter">Congratulations! Welcome in Your Cabinet!</div>';
+    form.classList.add("hidden");
+    success.classList.remove("hidden");
   } else {
     alertDataUser.classList.remove("hidden");
     loginUserInput.value = "";
