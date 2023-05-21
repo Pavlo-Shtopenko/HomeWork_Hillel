@@ -1,0 +1,72 @@
+body {
+    font: 16px/23px "Rubik", sans-serif;
+    font-weight: 700;
+    color: #253b45;
+    background-color: #ffffff;
+    margin: 0;
+  }
+  .wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 0
+  }
+  .container {
+    display: block;
+    width: 50vw !important;
+    /* min-height: 628px; */
+    padding: 50px 50px;
+    margin: 20px auto;
+    background-color: rgb(208, 208, 208);
+    border-radius: 30px;
+  }
+  .carouselBox {
+    display: block;
+    border: 2px solid #253b45 ;
+    border-radius: 10px ;
+    padding: 5px ;
+    margin: 5px;
+  }
+  .carousel-caption {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .controlButton {
+    background-color: bisque;
+    padding: 5px;
+    margin: 3px;
+    border: 1px solid #253b45;
+    border-radius: 5px;
+  }
+  .controlButton:hover {
+    background-color: rgb(250, 211, 164);
+  }
+  .listButton {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+.listFillButton {
+  list-style: none;
+}
+.numberField {
+  width: 60px;
+  padding: 3px;
+}
+.textField {
+  padding: 3px;
+}
+.numSlide {
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  color: #253b45;
+  background-color: #ffffff;
+  box-sizing: content-box;
+}
+
+.carousel-indicators [data-bs-target] {
+height:min-content !important;
+text-indent: 0 !important;
+background-color: #ffffff !important;
+border-bottom: 1px solid #253b45 !important;
+}
