@@ -1,0 +1,56 @@
+body {
+  font: 16px/23px "Rubik", sans-serif;
+  font-weight: 700;
+  color: #253b45;
+  background-color: #aaac98;
+  margin: 0;
+}
+.wrapper {
+  width: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: 1% 0;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.main-box {
+  width: 750px;
+  padding: 50px;
+  margin: 2% auto;
+  background-color: #d6d0b8;
+  border-radius: 30px;
+}
+.box-button {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0 0;
+}
+.button-pages {
+  width: 150px;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 20px;
+}
+
+.card {
+  border: 1px solid black;
+  border-radius: 5px;
+  background: linear-gradient(122deg, rgb(242, 243, 238) 39%, rgb(216, 216, 215) 99%);
+  padding: 10px;
+  margin: 7px;
+  width: 200px;
+}
+.hidden {
+  color: gray;
+  opacity: 30%;
+}
+.inputs {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 15px;
+}

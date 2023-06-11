@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="icon" href="img/check-mark.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="main-box">
+            <section id="section-list" class="container">
+            </section>
+            <div class="box-button" id="boxButton">
+                <button id="previous" class="button-pages">
+                    previous
+                </button>
+                <button id="next" class="button-pages">
+                    next
+                </button>
+            </div>
+        </div>
+        <form action="" class="main-box" id="creator">
+            <div class="inputs">
+                <H2>Create new User</H2>
+                <div class="input-item">
+                    <label for="first_name">Enter First Name:</label>
+                    <input type="text" name id="first_name" placeholder="first name" class="input-field"
+                        autocomplete="given-name">
+                </div>
+                <div class="input-item">
+                    <label for="last_name">Enter last name:</label>
+                    <input type="text" name id="last_name" placeholder="last name" autocomplete="family-name"
+                        class="input-field last_name">
+                </div>
+                <div class="input-item">
+                    <label for="email">Enter email:</label>
+                    <input type="text" name id="email" placeholder="email" class="input-field email"
+                        autocomplete="email">
+                </div>
+                <div class="input-item">
+                    <label for="job">Enter job:</label>
+                    <input type="text" name id="job" placeholder="job" class="input-field job">
+                </div>
+                <input id="create-button" type="button" name value="confirm" class="button-submit input-item">
+            </div>
+            <section id="newUserList">
+                <H3>New Users List:</H3>
+                <div id="newUserListItems"></div>
+            </section>
+        </form>
+
+    </div>
+</body>
+<script type="text/html" id="card-template">
+    <div class="card">
+        <p>{{name}}</p>
+        <p>{{email}}</p>
+        <img src="{{avatar}}" alt="{{name}}">
+    </div>
+</script>
+<script src="JS/index.js"></script>
+
+</html>
