@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="icon" href="img/check-mark.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- login form -->
+        <form action="" class="enter-form" id="form">
+            <div class="inputs-login">
+                <div class="input-item">
+                    <label for="login" >Your Login:</label>
+                    <input type="text" name="auto" id="login" placeholder="Login" class="input-field">
+                    <div id="alertLogin" class = "alert-bad-login hidden-login">Danger! Incorect format Login!</div>
+                </div>
+                <div class="input-item">
+                    <label for="password">Password:</label>
+                    <input type="password" name="" id="password" placeholder="password" class="input-field">
+                    <div id="alertPassword" class = "alert-bad-password hidden-login">Danger! Incorect format Password!</div>
+                </div>                    
+            </div>
+            <div class="input-item">
+                <input type="button" name="" id="button" value="Login" class="button-submit input-item disabled" disabled>
+                <div id="alertDataUser" class = "alert-bad-data-user hidden-login">such user does not exist or the password is incorrect</div>
+            </div>
+        </form>
+    </div>
+        <!--  form list users -->
+        <div class="main-box">
+            <div id="alertLoginPassword" class = "alert-bad-enter hidden-login">Danger! Incorect Password or Username!</div>
+            <section id="section-list" class="container">
+            </section>
+            <div class="box-button hidden-login" id="boxButton">
+                <button id="previous" class="button-pages">
+                    previous
+                </button>
+                <button id="next" class="button-pages">
+                    next
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/html" id="card-template">
+    <div class="card">
+        <p>{{name}}</p>
+        <p>{{email}}</p>
+        <img src="{{avatar}}" alt="{{name}}">
+    </div>
+</script>
+<script src="JS/index.js"></script>
+
+</html>
