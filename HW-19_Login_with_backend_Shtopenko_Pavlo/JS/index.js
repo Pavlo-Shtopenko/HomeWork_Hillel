@@ -1,6 +1,6 @@
 
 console.log("eve.holt@reqres.in");
-console.log("cityslicka");
+// console.log("cityslicka");
 // ----- log in ------ //
 const loginUserInput = document.getElementById("login");
 const passwordUserInput = document.getElementById("password");
@@ -96,6 +96,8 @@ const userList = document.getElementById("section-list");
 const previousButton = document.getElementById("previous");
 const nextButton = document.getElementById("next");
 const incorrectLogin = document.getElementById("alertLoginPassword");
+
+
 let counter = 1;
 
 confirmButton.addEventListener("click", () => {
@@ -103,12 +105,10 @@ confirmButton.addEventListener("click", () => {
     email : loginUserInput.value,
     password : passwordUserInput.value,
   };
-  console.log(sendLoginData);
   const requestLogIn = 'https://reqres.in/api/login';
   xhr.open('POST', requestLogIn, true);
   xhr.onload = (e) => {
       console.log(JSON.stringify(sendLoginData));
-      
       const response = JSON.parse(e.target.response)
       console.log(response);
       console.log(incorrectLogin.classList.contains("hidden-login"))
@@ -132,6 +132,7 @@ function getResponse() {
   xhr.onload = (e) => {
     try {
       const response = JSON.parse(e.target.response);
+      console.log(response)
       const mappedUsers = response.data.map((user) => {
         return {
           ...user,
@@ -145,6 +146,7 @@ function getResponse() {
 
         Object.keys(user).forEach(key => {
           currentUserCard = currentUserCard.replaceAll(`{{${key}}}`, user[key]);
+
         })
         userListresult += currentUserCard;
       });
@@ -177,4 +179,36 @@ function previousPage() {
 }
 nextButton.addEventListener("click", nextPage);
 previousButton.addEventListener("click", previousPage);
+
+userList.addEventListener('click', modifyCard);
+
+function modifyCard(event) {
+  const inseringtPhill = document.createElement('input');
+  const requestDelete = `https://reqres.in/api/users/2`;
+  if(event.target.classList.value === 'button-delete') {
+    xhr.open('DELETE', requestDelete, true);
+    xhr.onload = (e) => {
+      const response = JSON.parse(e.target.response);
+      // const response = JSON.parse(e.target.response);
+      // console.log(response);
+      console.log(e.target.status)
+    }
+    xhr.send();
+    // here end
+  } else if(
+    event.target.classList.value === 'button-edit'
+  ) {
+    event.target.classList.toggle('hidden-login');
+    event.target.nextSibling.nextSibling.classList.toggle('hidden-login');
+    event.target.parentNode.prepend(inseringtPhill);
+    inseringtPhill.setAttribute('placeholder', 'insert first name');
+  } else if(
+    event.target.classList.value === 'button-confirm'
+  )
+  {
+   event.target.previousSibling.previousSibling.classList.toggle('hidden-login');
+   event.target.classList.toggle('hidden-login');
+  }
+}
+
 
