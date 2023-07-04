@@ -19,12 +19,12 @@
             <div class="inputs-login">
                 <div class="input-item">
                     <label for="login" >Your Login:</label>
-                    <input type="text" name="auto" id="login" placeholder="Login" class="input-field">
+                    <input type="text" name="auto" id="login" placeholder="Login" class="input-field" value = "eve.holt@reqres.in">
                     <div id="alertLogin" class = "alert-bad-login hidden-login">Danger! Incorect format Login!</div>
                 </div>
                 <div class="input-item">
                     <label for="password">Password:</label>
-                    <input type="password" name="" id="password" placeholder="password" class="input-field">
+                    <input type="password" name="" id="password" placeholder="password" class="input-field" value = "1234567">
                     <div id="alertPassword" class = "alert-bad-password hidden-login">Danger! Incorect format Password!</div>
                 </div>                    
             </div>
@@ -51,9 +51,12 @@
     </div>
 </body>
 <script type="text/html" id="card-template">
-    <div class="card">
+    <div class="card" id="{{id}}">
         <p>{{name}}</p>
+        <input class="hidden-login input-first-name">
+        <input class="hidden-login input-second-name">
         <p>{{email}}</p>
+        <input class="hidden-login input-email">
         <button class="button-delete">delete</button>
         <button  class="button-edit">edit</button>
         <button class="hidden-login button-confirm">confirm</button>

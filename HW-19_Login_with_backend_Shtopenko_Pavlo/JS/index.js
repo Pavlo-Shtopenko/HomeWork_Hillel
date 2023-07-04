@@ -1,5 +1,4 @@
-
-console.log("eve.holt@reqres.in");
+// console.log("eve.holt@reqres.in");
 // console.log("cityslicka");
 // ----- log in ------ //
 const loginUserInput = document.getElementById("login");
@@ -60,7 +59,6 @@ passwordUserInput.addEventListener("focus", () => {
 
 form.addEventListener("focus", (e) => {
   if (e.target.tagName === "INPUT") {
-    console.log("delegate!!!");
     if (!confirmButton.hasAttribute("disabled")) {
       confirmButton.setAttribute("disabled", true);
     }
@@ -96,35 +94,33 @@ const userList = document.getElementById("section-list");
 const previousButton = document.getElementById("previous");
 const nextButton = document.getElementById("next");
 const incorrectLogin = document.getElementById("alertLoginPassword");
-
-
 let counter = 1;
-
 confirmButton.addEventListener("click", () => {
   let sendLoginData = {
-    email : loginUserInput.value,
-    password : passwordUserInput.value,
+    email: loginUserInput.value,
+    password: passwordUserInput.value,
   };
-  const requestLogIn = 'https://reqres.in/api/login';
-  xhr.open('POST', requestLogIn, true);
+  const requestLogIn = "https://reqres.in/api/login";
+  xhr.open("POST", requestLogIn, true);
   xhr.onload = (e) => {
-      console.log(JSON.stringify(sendLoginData));
-      const response = JSON.parse(e.target.response)
-      console.log(response);
-      console.log(incorrectLogin.classList.contains("hidden-login"))
-      if(e.target.status === 400){
-        if(incorrectLogin.classList.contains("hidden-login")){incorrectLogin.classList.remove("hidden-login")};
-        return;
-      } 
-      if(!incorrectLogin.classList.contains("hidden-login")){incorrectLogin.classList.add("hidden-login")};
-      getResponse();
-      form.classList.add('hidden-login');
-      boxButton.classList.remove('hidden-login');
+    JSON.stringify(sendLoginData);
+    const response = JSON.parse(e.target.response);
+    if (e.target.status === 400) {
+      if (incorrectLogin.classList.contains("hidden-login")) {
+        incorrectLogin.classList.remove("hidden-login");
+      }
+      return;
     }
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send(JSON.stringify(sendLoginData)) 
-  }
-);
+    if (!incorrectLogin.classList.contains("hidden-login")) {
+      incorrectLogin.classList.add("hidden-login");
+    }
+    getResponse();
+    form.classList.add("hidden-login");
+    boxButton.classList.remove("hidden-login");
+  };
+  xhr.setRequestHeader("Content-type", "application/json");
+  xhr.send(JSON.stringify(sendLoginData));
+});
 
 function getResponse() {
   const requestContent = `https://reqres.in/api/users?page=${counter}`;
@@ -132,7 +128,6 @@ function getResponse() {
   xhr.onload = (e) => {
     try {
       const response = JSON.parse(e.target.response);
-      console.log(response)
       const mappedUsers = response.data.map((user) => {
         return {
           ...user,
@@ -140,19 +135,16 @@ function getResponse() {
         };
       });
       let userListresult = "";
-      mappedUsers.forEach(user => {
-        let currentUserCard = '';
+      mappedUsers.forEach((user) => {
+        let currentUserCard = "";
         currentUserCard = cardItem;
-
-        Object.keys(user).forEach(key => {
+        Object.keys(user).forEach((key) => {
           currentUserCard = currentUserCard.replaceAll(`{{${key}}}`, user[key]);
-
-        })
+        });
         userListresult += currentUserCard;
       });
       const totalPages = response.total_pages;
       const currentPage = response.page;
-    
       if (currentPage === 1) {
         previousButton.setAttribute("disabled", "");
         nextButton.removeAttribute("disabled", "");
@@ -164,11 +156,9 @@ function getResponse() {
     } catch (error) {
       console.warn(e);
     }
-  }
+  };
   xhr.send();
 }
-
-
 function nextPage() {
   counter += 1;
   getResponse();
@@ -179,36 +169,71 @@ function previousPage() {
 }
 nextButton.addEventListener("click", nextPage);
 previousButton.addEventListener("click", previousPage);
-
-userList.addEventListener('click', modifyCard);
-
+userList.addEventListener("click", modifyCard);
 function modifyCard(event) {
-  const inseringtPhill = document.createElement('input');
-  const requestDelete = `https://reqres.in/api/users/2`;
-  if(event.target.classList.value === 'button-delete') {
-    xhr.open('DELETE', requestDelete, true);
+  const fullName = event.target.parentNode.firstChild.nextSibling;
+  const emailParag =
+    event.target.parentNode.firstChild.nextElementSibling.nextElementSibling
+      .nextElementSibling.nextElementSibling;
+  const idUser = event.target.parentNode.id;
+  const requestDelete = `https://reqres.in/api/users/${idUser}`;
+  const requestPatch = `https://reqres.in/api/users/${idUser}`;
+  if (event.target.classList.value === "button-delete") {
+    xhr.open("DELETE", requestDelete, true);
     xhr.onload = (e) => {
-      const response = JSON.parse(e.target.response);
-      // const response = JSON.parse(e.target.response);
-      // console.log(response);
-      console.log(e.target.status)
-    }
+      try {
+        const response = JSON.parse(e.target.response);
+      } catch (error) {
+        if (e.target.status === 204) {
+          event.target.parentNode.remove();
+        }
+      }
+    };
     xhr.send();
-    // here end
-  } else if(
-    event.target.classList.value === 'button-edit'
-  ) {
-    event.target.classList.toggle('hidden-login');
-    event.target.nextSibling.nextSibling.classList.toggle('hidden-login');
-    event.target.parentNode.prepend(inseringtPhill);
-    inseringtPhill.setAttribute('placeholder', 'insert first name');
-  } else if(
-    event.target.classList.value === 'button-confirm'
-  )
-  {
-   event.target.previousSibling.previousSibling.classList.toggle('hidden-login');
-   event.target.classList.toggle('hidden-login');
+  } else if (event.target.classList.value === "button-edit") {
+    event.target.classList.toggle("hidden-login"); //скрываем кнопку edit
+    event.target.nextSibling.nextSibling.classList.toggle("hidden-login"); //открываем кнопку confirm
+    fullName.classList.add("hidden-login"); //скрываем параграф с полным именем
+    fullName.nextElementSibling.classList.toggle("hidden-login"); //отображаем первый инпут с first name
+    fullName.nextElementSibling.setAttribute(
+      "value",
+      fullName.innerText.split(" ")[0]
+    ); //вносм value first name с параграфа полного имени
+    fullName.nextElementSibling.nextElementSibling.classList.toggle(
+      "hidden-login"
+    ); //отображаем первый инпут с second name
+    fullName.nextElementSibling.nextElementSibling.setAttribute(
+      "value",
+      fullName.innerText.split(" ")[1]
+    ); //вносм value second name с параграфа полного имени
+    emailParag.classList.add("hidden-login"); //скрываем параграф с емейлом
+    emailParag.nextElementSibling.setAttribute("value", emailParag.innerText); //вносим value в инпут емейла
+    emailParag.nextElementSibling.classList.toggle("hidden-login"); //отображаем инпут для редакта емейла
+  } else if (event.target.classList.value === "button-confirm") {
+    xhr.open("PATCH", requestPatch, true);
+    xhr.onload = (e) => {
+      try {
+        const response = JSON.parse(e.target.response);
+        if (e.target.status === 200) {
+          fullName.innerText =
+            fullName.nextElementSibling.value +
+            " " +
+            fullName.nextElementSibling.nextElementSibling.value; //вносим полное имя из двух инпутов
+          fullName.classList.toggle("hidden-login"); //отображаем полное имя
+          fullName.nextElementSibling.classList.toggle("hidden-login"); // скрываем лишний инпут
+          fullName.nextElementSibling.nextElementSibling.classList.toggle(
+            "hidden-login"
+          ); // скрываем лишний инпут
+          emailParag.innerText = emailParag.nextElementSibling.value; //вносим value инпута емейла в параграф емейла
+          emailParag.classList.toggle("hidden-login"); //отображаем параграф с емейлом
+          emailParag.nextElementSibling.classList.toggle("hidden-login");
+          event.target.classList.toggle("hidden-login");
+          event.target.previousElementSibling.classList.toggle("hidden-login");
+        }
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+    xhr.send();
   }
 }
-
-
