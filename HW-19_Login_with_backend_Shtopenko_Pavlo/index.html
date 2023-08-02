@@ -37,6 +37,7 @@
         <!--  form list users -->
         <div class="main-box">
             <div id="alertLoginPassword" class = "alert-bad-enter hidden-login">Danger! Incorect Password or Username!</div>
+            
             <section id="section-list" class="container">
             </section>
             <div class="box-button hidden-login" id="boxButton">
@@ -47,15 +48,22 @@
                     next
                 </button>
             </div>
+            <div class="form-new-user hidden-login" id="formNewUser">
+                <p>Create New User</p>
+                <input class="input-first-name" placeholder="first name" id="inputNewFirstName">
+                <input class="input-second-name" placeholder="second name" id="inputNewSecondName">
+                <input class="input-email" placeholder="email" id="inputNewEmail">
+                <button id="create-user" class="button-pages">confirm</button>
+            </div>
         </div>
     </div>
 </body>
 <script type="text/html" id="card-template">
     <div class="card" id="{{id}}">
-        <p>{{name}}</p>
+        <p class="name-user">{{name}}</p>
         <input class="hidden-login input-first-name">
         <input class="hidden-login input-second-name">
-        <p>{{email}}</p>
+        <p class="email-user">{{email}}</p>
         <input class="hidden-login input-email">
         <button class="button-delete">delete</button>
         <button  class="button-edit">edit</button>

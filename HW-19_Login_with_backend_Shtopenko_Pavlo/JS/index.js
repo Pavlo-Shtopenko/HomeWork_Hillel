@@ -89,12 +89,19 @@ form.addEventListener("change", () => {
 
 // ----- отображение списка юзеров ------  //
 const xhr = new XMLHttpRequest();
-const cardItem = document.getElementById("card-template").innerHTML;
+const cardItem = document.getElementById("card-template").innerHTML; //шаблон карточки
 const userList = document.getElementById("section-list");
 const previousButton = document.getElementById("previous");
 const nextButton = document.getElementById("next");
 const incorrectLogin = document.getElementById("alertLoginPassword");
+const createButton = document.getElementById("create-user");
+const formNewUser = document.getElementById("formNewUser")
+const newFirstName = document.getElementById('inputNewFirstName');
+const newSecondName = document.getElementById('inputNewSecondName');
+const newEmail = document.getElementById('inputNewEmail');
+let newID = null;
 let counter = 1;
+
 confirmButton.addEventListener("click", () => {
   let sendLoginData = {
     email: loginUserInput.value,
@@ -104,7 +111,7 @@ confirmButton.addEventListener("click", () => {
   xhr.open("POST", requestLogIn, true);
   xhr.onload = (e) => {
     JSON.stringify(sendLoginData);
-    const response = JSON.parse(e.target.response);
+    // const response = JSON.parse(e.target.response);
     if (e.target.status === 400) {
       if (incorrectLogin.classList.contains("hidden-login")) {
         incorrectLogin.classList.remove("hidden-login");
@@ -117,6 +124,7 @@ confirmButton.addEventListener("click", () => {
     getResponse();
     form.classList.add("hidden-login");
     boxButton.classList.remove("hidden-login");
+    formNewUser.classList.remove("hidden-login");
   };
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send(JSON.stringify(sendLoginData));
@@ -128,7 +136,7 @@ function getResponse() {
   xhr.onload = (e) => {
     try {
       const response = JSON.parse(e.target.response);
-      const mappedUsers = response.data.map((user) => {
+      const mappedUsers = response.data.map((user) => { //тут просто добавляется поле полного имени для каждого юзера из БД
         return {
           ...user,
           name: `${user.first_name} ${user.last_name}`,
@@ -137,11 +145,11 @@ function getResponse() {
       let userListresult = "";
       mappedUsers.forEach((user) => {
         let currentUserCard = "";
-        currentUserCard = cardItem;
+        currentUserCard = cardItem; // текущей карте юзера присваивается шаблон пустой карточки
         Object.keys(user).forEach((key) => {
-          currentUserCard = currentUserCard.replaceAll(`{{${key}}}`, user[key]);
+          currentUserCard = currentUserCard.replaceAll(`{{${key}}}`, user[key]); //в шаблонной карточке заменяются заглушки на текущее имя юзера
         });
-        userListresult += currentUserCard;
+        userListresult += currentUserCard; //в переменную добавляется новая обновленная карточка следующего юзера
       });
       const totalPages = response.total_pages;
       const currentPage = response.page;
@@ -152,21 +160,26 @@ function getResponse() {
         nextButton.setAttribute("disabled", "");
         previousButton.removeAttribute("disabled", "");
       }
-      userList.innerHTML = userListresult;
+      userList.innerHTML = userListresult; //именно тут рендерится список юзеров в DOM
     } catch (error) {
       console.warn(e);
     }
   };
   xhr.send();
 }
+
+
+
 function nextPage() {
   counter += 1;
   getResponse();
 }
+
 function previousPage() {
   counter -= 1;
   getResponse();
 }
+
 nextButton.addEventListener("click", nextPage);
 previousButton.addEventListener("click", previousPage);
 userList.addEventListener("click", modifyCard);
@@ -237,3 +250,41 @@ function modifyCard(event) {
     xhr.send();
   }
 }
+//создание нового юзера
+createButton.addEventListener('click', () =>{
+  const sendNewUser = {
+    first_name: newFirstName.value,
+    last_name: newSecondName.value,
+    email: newEmail.value
+  } 
+  const requestContent = `https://reqres.in/api/users`;
+  xhr.open("POST", requestContent, true);
+  xhr.onload = (e) => {
+    const response = JSON.parse(e.target.response);
+    newID = response.id;
+    try {
+    if (e.target.status === 201){
+      createNewUser()
+    }
+  } catch(error) {
+    console.warn(error)
+  }
+}
+xhr.setRequestHeader("Content-type", "application/json");
+xhr.send();
+});
+
+
+function createNewUser(){
+      let newUser = cardItem;
+      newUser = newUser.replaceAll('{{name}}', `${newFirstName.value} ${newSecondName.value}`);
+      newUser = newUser.replaceAll('{{avatar}}', './img/man.jpg');
+      newUser = newUser.replaceAll('{{email}}', newEmail.value);
+      newUser = newUser. replaceAll('{{id}}', newID);
+      userList.insertAdjacentHTML('afterbegin', newUser);
+      newFirstName.value = '';
+      newSecondName.value = '';
+      newEmail.value = '';
+    }
+
+
