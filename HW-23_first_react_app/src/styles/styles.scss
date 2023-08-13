@@ -1,0 +1,43 @@
+.wrapper {
+    padding: 10px;
+    margin: 0 auto;
+}
+.sectionStyle {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 90vh;
+}
+.mainContent {
+    background-color: rgb(203, 223, 237);
+    border: 1px solid black;
+    width: 80%;
+
+}
+
+.listStyle {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+}
+
+.sideBar {
+    background-color: aquamarine;
+    border: 1px solid black;
+    min-width: 50px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
+
+.headerStyle {
+    background-color: aqua;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
