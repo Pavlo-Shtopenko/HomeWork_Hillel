@@ -1,0 +1,52 @@
+body {
+    padding: 0 30px;
+}
+.wrapper {
+    padding: 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.headerContent {
+    background-color: rgb(203, 223, 237);
+    border: 1px solid black;
+    width: 80%;
+
+}
+
+.sectionStyle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: beige;
+}
+.mainContent {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.listStyle {
+    list-style: none;
+    padding: 5px;
+    margin: 20px;
+}
+
+.likesBox {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.likeButton {
+    height: 2rem;
+}
+.smileBox {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: yellow;
+}
